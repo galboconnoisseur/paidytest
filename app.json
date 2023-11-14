@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "paidytest",
+    "slug": "paidytest",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
