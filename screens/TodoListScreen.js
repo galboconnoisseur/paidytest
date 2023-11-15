@@ -19,7 +19,7 @@ const TodoListScreen = ({ navigation }) => {
     setTodoInput(text);
   };
 
-  const handleTodoEdit = (targetId, label) => {
+  const handleTodoUpdate = (targetId, label) => {
     const newTodos = todos.map((todo) =>
       todo.id === targetId ? { id: targetId, label } : todo
     );
@@ -65,7 +65,7 @@ const TodoListScreen = ({ navigation }) => {
                 <TodoItem
                   key={`${item.label}--${item.id}`}
                   todo={item}
-                  onEdit={handleTodoEdit}
+                  onUpdate={handleTodoUpdate}
                   onDelete={handleTodoDelete}
                 />
               )}

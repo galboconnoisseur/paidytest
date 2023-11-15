@@ -49,6 +49,21 @@ describe("TodoListScreen", () => {
     });
   });
 
+  it("should not add a todo item to the list if input is empty", async () => {
+    render(<TodoListScreen navigation={mockNavigation} />);
+    const addButton = screen.getByText(/^Add$/i);
+
+    act(() => {
+      fireEvent.press(addButton);
+    });
+
+    await waitFor(() => {
+      // Assert that a todo item wasn't rendered
+      expect(screen.queryByText(/^Edit$/i)).toBeFalsy();
+      expect(screen.queryByText(/^Delete$/i)).toBeFalsy();
+    });
+  });
+
   it("removes a todo item from the list", async () => {
     render(<TodoListScreen navigation={mockNavigation} />);
 

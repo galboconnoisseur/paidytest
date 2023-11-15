@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import StyledButton from "./StyledButton";
 
-const TodoItem = ({ todo: { id, label }, onEdit, onDelete }) => {
+const TodoItem = ({ todo: { id, label }, onUpdate, onDelete }) => {
   const [textInput, setTextInput] = useState(label);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -17,7 +17,8 @@ const TodoItem = ({ todo: { id, label }, onEdit, onDelete }) => {
   };
   
   const handleSaveClick = () => {
-    onEdit(id, textInput);
+    onUpdate(id, textInput);
+    setIsEditing(false);
   };
 
   const handleEditClick = () => {
@@ -25,6 +26,10 @@ const TodoItem = ({ todo: { id, label }, onEdit, onDelete }) => {
   };
 
   const handleCancel = () => {
+    /* 
+      If we cancel the edit the text input 
+      value will revert to its original state
+    */
     setTextInput(label);
     setIsEditing(false);
   };
@@ -43,13 +48,11 @@ const TodoItem = ({ todo: { id, label }, onEdit, onDelete }) => {
     } else {
       handleEditClick();
     }
-    setIsEditing(!isEditing);
   };
 
   const handleRightButton = () => {
     if (isEditing) {
       handleCancel();
-      setIsEditing(false);
     } else {
       handleDelete();
     }
